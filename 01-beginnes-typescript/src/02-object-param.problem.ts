@@ -1,21 +1,42 @@
-import { expect, it } from "vitest";
+import { expect, it } from 'vitest'
 
-export const addTwoNumbers = (params) => {
-  return params.first + params.second;
-};
+// # First solution:
+// export const addTwoNumbers = (params: { first: number; second: number }) => {
+//   return params.first + params.second
+// }
 
-it("Should add the two numbers together", () => {
+// # Second solution
+// type AddNumberType = {
+//   first: number
+//   second: number
+// }
+
+// export const addTwoNumbers = (params: AddNumberType) => {
+//   return params.first + params.second
+// }
+
+// # Third solution
+interface AddNumberInterface {
+  first: number
+  second: number
+}
+
+export const addTwoNumbers = (params: AddNumberInterface) => {
+  return params.first + params.second
+}
+
+it('Should add the two numbers together', () => {
   expect(
     addTwoNumbers({
       first: 2,
       second: 4,
     }),
-  ).toEqual(6);
+  ).toEqual(6)
 
   expect(
     addTwoNumbers({
       first: 10,
       second: 20,
     }),
-  ).toEqual(30);
-});
+  ).toEqual(30)
+})
