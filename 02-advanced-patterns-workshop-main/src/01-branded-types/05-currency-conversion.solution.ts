@@ -8,7 +8,7 @@ interface User {
 }
 
 type ConvertedAmount = Brand<number, "ConvertedAmount">;
-type AuthorizedUser = Brand<User, "CurrencyAuthorizedUser">;
+type AuthorizeUser = Brand<User, "AuthorizeUser">;
 
 // Mocks a function that uses an API to convert
 // One currency to another
@@ -21,21 +21,17 @@ const getConversionRateFromApi = async (
 };
 
 // Mocks a function which actually performs the conversion
-const performConversion = async (
-  user: AuthorizedUser,
-  to: string,
-  amount: ConvertedAmount,
-) => {};
+const performConversion = async (user: User, to: string, amount: number) => {};
 
 const ensureUserCanConvert = (
-  user: User,
+  user: AuthorizeUser,
   amount: ConvertedAmount,
-): AuthorizedUser => {
+): AuthorizeUser => {
   if (user.maxConversionAmount < amount) {
     throw new Error("User cannot convert currency");
   }
 
-  return user as AuthorizedUser;
+  return user;
 };
 
 describe("Possible implementations", () => {
