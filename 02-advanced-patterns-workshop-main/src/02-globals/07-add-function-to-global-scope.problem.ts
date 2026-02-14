@@ -1,5 +1,6 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
+import { number } from "zod";
 
 /**
  * Clues:
@@ -16,6 +17,11 @@ import { Equal, Expect } from "../helpers/type-utils";
  *
  * var myVar: number
  */
+
+declare global {
+  var myVar: number;
+  function myFunc(): boolean;
+}
 
 globalThis.myFunc = () => true;
 globalThis.myVar = 1;
