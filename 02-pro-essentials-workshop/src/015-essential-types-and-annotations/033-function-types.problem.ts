@@ -3,7 +3,9 @@ type User = {
   name: string;
 };
 
-const modifyUser = (users: User[], id: string, makeChange) => {
+type MakeChange = (user: User) => User;
+
+const modifyUser = (users: User[], id: string, makeChange: MakeChange) => {
   return users.map((u) => {
     if (u.id === id) {
       return makeChange(u);

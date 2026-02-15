@@ -1,8 +1,8 @@
 import { expect, it } from "vitest";
 
-const handleFormData = (e: any) => {
+const handleFormData = (e: ) => {
   e.preventDefault();
-  const data = new FormData(e.terget);
+  const data = new FormData(e.target);
   const value = Object.fromEntries(data.entries());
   return value;
 };
