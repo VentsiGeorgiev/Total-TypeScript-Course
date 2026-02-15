@@ -3,9 +3,8 @@ type Event = {
 };
 
 const processUserMap = (eventMap: Map<string, Event>) => {
-  if (eventMap.has("error")) {
-    const message = eventMap.get("error").message;
-
-    throw new Error(message);
+  const event = eventMap.get("error");
+  if (event) {
+    throw new Error(event.message);
   }
 };
