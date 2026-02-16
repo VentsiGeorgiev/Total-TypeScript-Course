@@ -26,8 +26,9 @@ const getAvatarImage = (entity: User | Organisation | Product) => {
     // Should not be able to access properties that are
     // not common to both types
 
-    // @ts-expect-error
-    entity.age;
+    if ("age" in entity) {
+      entity.age;
+    }
 
     // @ts-expect-error
     entity.address;
