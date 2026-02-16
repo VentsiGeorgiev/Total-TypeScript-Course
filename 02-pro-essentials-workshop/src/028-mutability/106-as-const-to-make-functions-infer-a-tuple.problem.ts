@@ -1,15 +1,15 @@
 import { Equal, Expect } from "@total-typescript/helpers";
 
-const fetchData = async () => {
+const fetchData = async (): Promise<[Error | undefined, any?]> => {
   const result = await fetch("/");
 
   if (!result.ok) {
-    return [new Error("Could not fetch data.")] as const;
+    return [new Error("Could not fetch data.")];
   }
 
   const data = await result.json();
 
-  return [undefined, data] as const;
+  return [undefined, data];
 };
 
 const example = async () => {
