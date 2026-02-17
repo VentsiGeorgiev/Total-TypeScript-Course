@@ -1,5 +1,10 @@
 import { expect, it } from "vitest";
 
+type MyObj = {
+  a: number;
+  b: number;
+};
+
 const getObj = () => {
   const obj = JSON.parse('{ "a": 123, "b": 456 }');
 
@@ -7,7 +12,7 @@ const getObj = () => {
 };
 
 it("Should return an obj", () => {
-  const obj = getObj();
+  const obj = getObj() as MyObj;
 
   expect(obj.b).toEqual(456);
 
