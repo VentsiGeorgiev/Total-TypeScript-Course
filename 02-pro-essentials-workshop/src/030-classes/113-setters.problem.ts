@@ -15,6 +15,7 @@ class CanvasNode {
       y: this.#y,
     };
   }
+  set position(pos) {}
 
   move(x: number, y: number) {
     this.#x = x;

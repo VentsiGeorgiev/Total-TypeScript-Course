@@ -4,6 +4,11 @@ class CanvasNode {
   x = 0;
   y = 0;
 
+  constructor(ops?: { x: number; y: number }) {
+    this.x = ops?.x || 0;
+    this.y = ops?.y || 0;
+  }
+
   move(x: number, y: number) {
     this.x = x;
     this.y = y;
