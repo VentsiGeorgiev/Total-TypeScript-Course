@@ -5,7 +5,19 @@ interface FetchOptions {
   body?: string;
 }
 
-const options = {
+// const options = {
+//   url: "/",
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   // @ts-expect-error
+//   search: new URLSearchParams({
+//     limit: "10",
+//   }),
+// } satisfies FetchOptions;
+
+const options: FetchOptions = {
   url: "/",
   method: "GET",
   headers: {
