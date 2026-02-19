@@ -6,25 +6,27 @@ type ErrorShape = {
   };
 };
 
-type UserDataShape =
+/**
+ * The data shape we get back from API
+ */
+
+type DataShape<DataT> =
   | {
-      data: {
-        id: string;
-        name: string;
-        email: string;
-      };
+      data: DataT;
     }
   | ErrorShape;
 
-type PostDataShape =
-  | {
-      data: {
-        id: string;
-        title: string;
-        body: string;
-      };
-    }
-  | ErrorShape;
+type UserDataShape = DataShape<{
+  id: string;
+  name: string;
+  email: string;
+}>;
+
+type PostDataShape = DataShape<{
+  id: string;
+  title: string;
+  body: string;
+}>;
 
 // TESTS
 

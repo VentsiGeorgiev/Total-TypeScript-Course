@@ -1,4 +1,4 @@
-type AbsoluteRoute = string;
+type AbsoluteRoute = `/${string}`;
 
 const goToRoute = (route: AbsoluteRoute) => {
   // ...

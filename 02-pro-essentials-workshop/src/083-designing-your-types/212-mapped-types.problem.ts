@@ -6,7 +6,10 @@ interface Attributes {
   age: number;
 }
 
-type AttributeGetters = unknown;
+type AttributeGetters = {
+  [K in keyof Attributes]: () => Attributes[K];
+  // [K in keyof Attributes]: () => [Attributes[K], K];
+};
 
 type tests = [
   Expect<
@@ -20,3 +23,9 @@ type tests = [
     >
   >,
 ];
+
+type Example = "a" | "b" | "c";
+
+type MappedType = {
+  [K in Example]: K;
+};
