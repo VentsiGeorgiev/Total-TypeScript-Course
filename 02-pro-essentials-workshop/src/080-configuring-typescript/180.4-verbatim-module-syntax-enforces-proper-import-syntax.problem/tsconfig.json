@@ -7,5 +7,6 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "outDir": "./dist",
-  },
+    "verbatimModuleSyntax": true
+  }
 }
