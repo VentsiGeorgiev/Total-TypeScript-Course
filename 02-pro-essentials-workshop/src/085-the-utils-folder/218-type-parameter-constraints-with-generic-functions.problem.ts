@@ -3,7 +3,9 @@ import { it } from "vitest";
 
 const UNKNOWN_CODE = 8000;
 
-const addCodeToError = <TError>(error: TError) => {
+const addCodeToError = <TError extends { message: string; code?: number }>(
+  error: TError,
+) => {
   return {
     ...error,
     code: error.code ?? UNKNOWN_CODE,

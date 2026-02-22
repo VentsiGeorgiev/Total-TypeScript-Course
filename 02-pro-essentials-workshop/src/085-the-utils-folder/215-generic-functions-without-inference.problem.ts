@@ -2,8 +2,8 @@ import { Equal, Expect } from "@total-typescript/helpers";
 
 // CODE
 
-const createStringMap = () => {
-  return new Map();
+const createStringMap = <T>() => {
+  return new Map<string, T>();
 };
 
 // TESTS
