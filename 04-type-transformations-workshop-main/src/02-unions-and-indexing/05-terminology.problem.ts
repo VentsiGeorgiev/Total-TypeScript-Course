@@ -1,9 +1,9 @@
 /**
  * It's important to understand the terminology around unions:
  *
- * One of the type declarations below is a union.
- * One of the type declarations below is a discriminated union.
- * One of the type declarations below is an enum.
+ * One of the type declarations below is a union. = B
+ * One of the type declarations below is a discriminated union. = type A
+ * One of the type declarations below is an enum. = type C
  *
  * Which is which?
  */
