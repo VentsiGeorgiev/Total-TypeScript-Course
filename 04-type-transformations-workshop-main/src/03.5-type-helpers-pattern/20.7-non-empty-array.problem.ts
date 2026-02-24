@@ -1,4 +1,5 @@
-type NonEmptyArray = unknown;
+// type NonEmptyArray<T> = [T, ...Array<T>];
+type NonEmptyArray<T> = [T, ...T[]];
 
 export const makeEnum = (values: NonEmptyArray<string>) => {};
 
