@@ -2,13 +2,13 @@ import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
 const makeSafe =
-  (func: unknown) =>
+  <TFunc extends (...args: any[]) => any>(func: TFunc) =>
   (
-    ...args: unknown
+    ...args: Parameters<TFunc>
   ):
     | {
         type: "success";
-        result: unknown;
+        result: ReturnType<TFunc>;
       }
     | {
         type: "failure";
@@ -29,7 +29,7 @@ const makeSafe =
     }
   };
 
-it("Should return the result with a { type: 'success' } on a successful call", () => {
+it("Should return the result on a successful call", () => {
   const func = makeSafe(() => 1);
 
   const result = func();
