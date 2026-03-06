@@ -14,10 +14,10 @@ import { Equal, Expect } from "../helpers/type-utils";
  *
  * 1. See if you can fix it!
  */
-const createRequiredContext = () => {
-  const context = React.createContext(null);
+const createRequiredContext = <T,>(): [() => T, React.Provider<T | null>] => {
+  const context = React.createContext<T | null>(null);
 
-  const useContext = () => {
+  const useContext = (): T => {
     const contextValue = React.useContext(context);
 
     if (contextValue === null) {
