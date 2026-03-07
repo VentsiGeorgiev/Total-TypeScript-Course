@@ -4,6 +4,7 @@ declare global {
   namespace React {
     interface MyAwesomeInterface {
       foo: string;
+      bar: string;
     }
   }
 }

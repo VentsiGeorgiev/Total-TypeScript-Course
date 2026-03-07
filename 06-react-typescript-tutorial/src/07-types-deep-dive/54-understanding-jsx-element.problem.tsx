@@ -6,8 +6,13 @@
  */
 
 type ClickMe = React.ReactElement;
+// The actual object representation of a React element.
+
 type ClickMeToo = JSX.Element;
+//Type returned by a JSX expression.
+
 type ClickMeThree = React.ReactNode;
+// This is anything React can render.
 
 /**
  * 2. What is the return type of this Component?
