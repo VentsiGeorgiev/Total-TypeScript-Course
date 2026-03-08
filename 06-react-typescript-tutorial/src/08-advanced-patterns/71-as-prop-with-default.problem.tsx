@@ -1,53 +1,29 @@
-import { ElementType } from "react";
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const Link = <TAs extends ElementType>(
+export const Wrapper = <TAs extends keyof JSX.IntrinsicElements>(
   props: {
     as: TAs;
-  } & React.ComponentPropsWithoutRef<TAs>,
+  } & React.ComponentProps<TAs>,
 ) => {
-  const { as: Comp = "a", ...rest } = props;
-  return <Comp {...rest}></Comp>;
-};
+  const Comp = props.as as string;
 
-/**
- * Should work without specifying 'as'
- */
-
-const Example1 = () => {
-  return (
-    <>
-      <Link
-        // @ts-expect-error doesNotExist is not a valid prop
-        doesNotExist
-      ></Link>
-
-      <Link
-        // e should be inferred correctly
-        onClick={(e) => {
-          type test = Expect<
-            Equal<typeof e, React.MouseEvent<HTMLAnchorElement>>
-          >;
-        }}
-      ></Link>
-    </>
-  );
+  return <Comp {...(props as any)}></Comp>;
 };
 
 /**
  * Should work specifying a 'button'
  */
 
-const Example2 = () => {
+const Example1 = () => {
   return (
     <>
-      <Link
+      <Wrapper
         as="button"
         // @ts-expect-error doesNotExist is not a valid prop
         doesNotExist
-      ></Link>
+      ></Wrapper>
 
-      <Link
+      <Wrapper
         as="button"
         // e should be inferred correctly
         onClick={(e) => {
@@ -55,34 +31,31 @@ const Example2 = () => {
             Equal<typeof e, React.MouseEvent<HTMLButtonElement>>
           >;
         }}
-      ></Link>
+      ></Wrapper>
     </>
   );
 };
 
 /**
- * Should work with Custom components!
+ * Should work specifying a 'div'
  */
 
-const Custom = (
-  props: { thisIsRequired: boolean },
-  ref: React.ForwardedRef<HTMLAnchorElement>,
-) => {
-  return <a ref={ref} />;
-};
-
-const Example3 = () => {
+const Example2 = () => {
   return (
     <>
-      <Link as={Custom} thisIsRequired />
-      <Link
-        as={Custom}
-        // @ts-expect-error incorrectProp should not be allowed
-        incorrectProp
-      />
+      <Wrapper
+        as="div"
+        // @ts-expect-error doesNotExist is not a valid prop
+        doesNotExist
+      ></Wrapper>
 
-      {/* @ts-expect-error thisIsRequired is not being passed */}
-      <Link as={Custom}></Link>
+      <Wrapper
+        as="div"
+        // e should be inferred correctly
+        onClick={(e) => {
+          type test = Expect<Equal<typeof e, React.MouseEvent<HTMLDivElement>>>;
+        }}
+      ></Wrapper>
     </>
   );
 };
