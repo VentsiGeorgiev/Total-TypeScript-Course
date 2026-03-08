@@ -1,20 +1,22 @@
-import { useForm } from "react-hook-form";
+import {
+  DefaultValues,
+  FieldValues,
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  useForm,
+} from "react-hook-form";
 import { Equal, Expect, Extends } from "../helpers/type-utils";
 
-/**
- * Here, we're creating a wrapper around react-hook-form's useForm hook.
- *
- * We want to change the API slightly so that only certain methods are
- * exposed. We also want to make sure that defaultValues is ALWAYS
- * required.
- *
- * A clue: you'll need this line of code:
- *
- * defaultValues as DefaultValues<TValues>
- */
-const useCustomForm = (defaultValues: any) => {
+const useCustomForm = <TValues extends FieldValues>(
+  defaultValues: TValues,
+): {
+  register: UseFormRegister<TValues>;
+  handleSubmit: UseFormHandleSubmit<TValues>;
+  getValues: UseFormGetValues<TValues>;
+} => {
   const form = useForm({
-    defaultValues: defaultValues,
+    defaultValues: defaultValues as DefaultValues<TValues>,
   });
 
   return {
